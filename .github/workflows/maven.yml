@@ -33,7 +33,7 @@ jobs:
           cache: maven
 
       - name: Run tests
-        run: mvn clean test -Dcucumber.filter.tags="@api or @ui"
+        run: mvn clean test -Dcucumber.filter.tags="@ui or @api"
         working-directory: tests
 
       - name: Build test report
