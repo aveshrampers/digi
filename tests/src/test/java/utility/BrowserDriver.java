@@ -23,7 +23,7 @@ public class BrowserDriver {
         options.addArguments(
                 "--disable-dev-shm-usage",
                 "--remote-debugging-pipe",
-                // "--headless",
+                "--headless",
                 "--no-sandbox",
                 "--allow-insecure-localhost"
         );
