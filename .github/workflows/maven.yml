@@ -35,8 +35,8 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
-        run: mvn clean test -Dcucumber.filter.tags="@ui or @api"
-        working-directory: tests
+          path: tests
+      - run: mvn clean test -Dcucumber.filter.tags="@ui or @api"
 
       - name: Build test report
         uses: simple-elf/allure-report-action@v1.9
