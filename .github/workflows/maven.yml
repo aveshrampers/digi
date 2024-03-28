@@ -32,12 +32,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Run API tests
-        run: mvn clean test -Dcucumber.filter.tags="@api"
-        working-directory: tests
-
-      - name: Run UI tests
-        run: mvn clean test -Dcucumber.filter.tags="@ui"
+      - name: Run tests
+        run: mvn clean test -Dcucumber.filter.tags="@api or @ui"
         working-directory: tests
 
       - name: Build test report
