@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import utility.BrowserDriver;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieDescriptionPage extends BrowserDriver {
@@ -17,6 +18,8 @@ public class MovieDescriptionPage extends BrowserDriver {
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 30), this);
     }
 
+
+    String matcher = "[A New Hope, The Empire Strikes Back, Return of the Jedi, The Phantom Menace, Attack of the Clones, Revenge of the Sith]";
     @FindAll(@FindBy(how = How.CSS, using = "td a"))
     List<WebElement> title_name;
 
@@ -30,8 +33,15 @@ public class MovieDescriptionPage extends BrowserDriver {
     WebElement home_image;
 
     public void Verify_Homepage() {
-        String tableName = home_image.getTagName();
-        Assert.assertEquals(tableName, "TABLE");
+        ArrayList<String> titleValues = new ArrayList<>();
+        try {
+            for (WebElement webElement : title_name) {
+                titleValues.add(webElement.getAttribute("textContent"));
+            }
+        } catch (Exception e) {
+            System.out.println("Exception " + e);
+        }
+        Assert.assertEquals(titleValues.toString(), matcher);
 
     }
 
