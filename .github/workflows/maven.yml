@@ -25,11 +25,6 @@ jobs:
       - run: yarn build
       - run: yarn start &
 
-  Tests:
-    if: always()
-    needs: Setup
-    runs-on: ubuntu-latest
-    steps:
       - name: Set up JDK 21
         uses: actions/setup-java@v4.2.1
         with:
@@ -37,12 +32,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - uses: actions/checkout@v4
-        with:
-          path: tests
-
       - name: Run UI tests
         run: mvn clean test -Dcucumber.filter.tags="@ui or @api"
+        working-directory: tests
 
       - name: Build test report
         uses: simple-elf/allure-report-action@v1.9
