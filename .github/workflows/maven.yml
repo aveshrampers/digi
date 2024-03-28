@@ -13,7 +13,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  Setup:
+  Setup_And_Run_Tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,8 +32,12 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Run API tests
+        run: mvn clean test -Dcucumber.filter.tags="@api"
+        working-directory: tests
+
       - name: Run UI tests
-        run: mvn clean test -Dcucumber.filter.tags="@ui or @api"
+        run: mvn clean test -Dcucumber.filter.tags="@ui"
         working-directory: tests
 
       - name: Build test report
