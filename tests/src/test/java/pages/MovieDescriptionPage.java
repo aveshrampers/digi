@@ -26,15 +26,13 @@ public class MovieDescriptionPage extends BrowserDriver {
     @FindAll(@FindBy(how = How.XPATH, using = "//div[contains(.,'Planets')]/ul/li"))
     List<WebElement> planets;
 
-    @FindBy(how = How.XPATH, using = "//@class[contains(.,'layout_header')]")
+    @FindBy(how = How.XPATH, using = "table")
     WebElement home_image;
 
     public void Verify_Homepage() {
-        try {
-            home_image.isDisplayed();
-        } catch (Exception e) {
-            System.out.println("The exception " + e);
-        }
+        String tableName = home_image.getTagName();
+        Assert.assertEquals(tableName, "TABLE");
+
     }
 
     public void Navigate_To_Title_Description(String title) {
