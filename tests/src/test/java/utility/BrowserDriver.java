@@ -32,6 +32,7 @@ public class BrowserDriver {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         try {
             driver.get("http://localhost:3000/");
+            System.out.println("Driver successfully initiated");
         } catch (Exception e) {
             System.out.println("Driver error " + e);
         }

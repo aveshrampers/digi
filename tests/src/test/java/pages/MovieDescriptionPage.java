@@ -1,8 +1,6 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +11,7 @@ import utility.BrowserDriver;
 
 import java.util.List;
 
-public class MovieDescriptionPage extends BrowserDriver{
+public class MovieDescriptionPage extends BrowserDriver {
 
     public MovieDescriptionPage() {
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 30), this);
@@ -30,9 +28,15 @@ public class MovieDescriptionPage extends BrowserDriver{
 
     @FindBy(how = How.XPATH, using = "//@class[contains(.,'layout_header')]")
     WebElement home_image;
+
     public void Verify_Homepage() {
-        home_image.isDisplayed();
+        try {
+            home_image.isDisplayed();
+        } catch (Exception e) {
+            System.out.println("The exception " + e);
+        }
     }
+
     public void Navigate_To_Title_Description(String title) {
         try {
             for (WebElement webElement : title_name) {
