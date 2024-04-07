@@ -38,6 +38,8 @@ public class MovieListingPage extends BrowserDriver {
                         retry += 1;
                     } while (retry < 2);
                     break;
+                default:
+                    System.out.println("Title value = " + header.toUpperCase() + " does not exist");
             }
         } catch (Exception e) {
             System.out.println("Element exception " + e);
@@ -45,12 +47,8 @@ public class MovieListingPage extends BrowserDriver {
     }
 
     public void Verify_Last_Movie_Title(String title) {
-        try {
-            WebElement last = title_names.getLast();
-            System.out.println(last.getText());
-            Assert.assertEquals(title, last.getText());
-        } catch (Exception e) {
-            System.out.println("Exception" + e);
-        }
+        WebElement last = title_names.getLast();
+        System.out.println(last.getText());
+        Assert.assertEquals(title, last.getText());
     }
 }
